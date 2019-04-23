@@ -1,33 +1,35 @@
 require 'sqlite3'
 
 class Users
-    attr_accessor :id, :title, :body, :author_id
+    attr_accessor :id, :fname, :lname
     def self.find_by_id(id)
-    question = QuestionsDatabase.instance.execute(<<-SQL, id)
+    question = QuestionsDatabase.instance.execute(<<-SQL, id :id)
       SELECT
-        questions.*
+        users.*
       FROM
-        questions
+        users
       WHERE
-        id = :id
+        users.id = :id
     SQL
     return nil unless questions.length > 0
 
-    Question.new(question.first) 
+    User.new(user.first) 
   end
 
-  def self.find_by_author_id(author_id)
-    question = QuestionsDatabase.instance.execute(<<-SQL, id)
+  def self.find_by_name(fname, lname)
+    question = QuestionsDatabase.instance.execute(<<-SQL, attrs)
       SELECT
-        questions.*
+        users.*
       FROM
-        questions
+        users
       WHERE
-        author_id = :author_id
+        users.fname = :fname
+        AND
+        users.lname = :lname
     SQL
     return nil unless questions.length > 0
 
-    Question.new(question.first) 
+    User.new(user.first) 
   end
 
   def initialize(options)
