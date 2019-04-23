@@ -17,7 +17,7 @@ class QuestionLikes
   end
 
   def self.find_by_user_id(user_id)
-    question = QuestionLikes.instance.execute(<<-SQL, attrs)
+    questionl = QuestionLikes.instance.execute(<<-SQL, attrs)
       SELECT
         question_likes.*
       FROM
@@ -32,7 +32,7 @@ class QuestionLikes
   end
 
   def self.find_by_question_id(question_id)
-    question = QuestionLikes.instance.execute(<<-SQL, attrs)
+    questionl = QuestionLikes.instance.execute(<<-SQL, attrs)
       SELECT
         question_likes.*
       FROM
@@ -49,9 +49,7 @@ class QuestionLikes
   def initialize(options)
     @id = options['id']
     @user_id = options['user_id']
-    @question_id = options['question_id']
-    
-    
+    @question_id = options['question_id'] 
   end
 end
 
