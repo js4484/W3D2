@@ -57,3 +57,14 @@ class Replies
 end
 
 
+def question
+    Question.find(question_id)
+end
+
+def parent_reply
+    Replies.find(parent_reply_id)
+end
+
+def child_replies
+    Replies.find_by_parent_id(id)
+end
