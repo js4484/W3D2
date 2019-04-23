@@ -1,4 +1,8 @@
-CREATE TABLE plays (
+PRAGMA foreign_keys = ON;
+
+
+
+CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     fname TEXT NOT NULL,
     lname TEXT NOT NULL,
@@ -36,3 +40,18 @@ CREATE TABLE question_likes (
     FOREIGN KEY (question_id) REFERENCES questions(id)''
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+INSERT INTO users (fname, lname) VALUES ("Jake", "Johnson");
+INSERT INTO users (fname, lname) VALUES ("Amy", "Park");
+
+INSERT INTO questions (title, body, author_id) VALUES ("god", "Does he exist?", 1);
+INSERT INTO questions (title, body, author_id) VALUES ("chocolate", "Who doesn't like it", 2);
+
+INSERT INTO question_follows (user_id, question_id) VALUES (1, 1);
+INSERT INTO question_follows (user_id, question_id) VALUES (2, 2);
+
+INSERT INTO replies (question_id, parent_reply_id, author_id, body) VALUES (1, NULL, 2, "No.");
+INSERT INTO replies (question_id, parent_reply_id, author_id, body) VALUES (1, 1, 1, "Okay.");
+
+INSERT INTO question_likes (user_id, question_id) VALUES (2, 1);
+INSERT INTO question_likes (user_id, question_id) VALUES (1, 1);
